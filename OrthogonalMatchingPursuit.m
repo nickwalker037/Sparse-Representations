@@ -16,31 +16,18 @@ for j = 1:4
   x = [0; 0; 0; 0];
   xval = [];
   residual = [];
-  for i = -5.0:0.01:5.0
+  for i = -5.0:0.001:5.0
     x(j) = i; % iterate the test values through each row in the x vector
     res = norm((A*x)-b,2); % calculate the residual based on the new x value
     xval = [xval, i];
     residual = [residual, res];
+    
   end;
-  fprintf('The minimum residual value for row number %.0f is: %.4f \n', j, min(residual))
+  fprintf('The minimum residual value for row number %.0f where x = %.3f is: %.4f \n', j, xval(find(residual == min(residual))),min(residual))
 end
 
 
 %x = [0;0.915;0;0.719];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
