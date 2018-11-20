@@ -43,9 +43,24 @@ end
 % -------------------------------------------------------------
 
 
+function y = omp(A, b, k)
+% OMP Solve the P0 problem via OMP
+%
+% Solves the following problem:
+%   min_x ||b - Ax||_2^2 s.t. ||x||_0 <= k
+%
+% The solution is returned in the vector x
+
+% Initialize the vector x
+x = zeros(size(A,2),1);
+
+% TODO: Implement the OMP algorithm
+% Write your code here... x = ????;
+s = 1;
+s_max = k;
 
 resid = norm((A*x)-b,2);
-while resid > k
+while s <= s_max
   col_res_values = [];
   col_x_values = [];
   for j = 1:size(A,2)
@@ -71,20 +86,11 @@ while resid > k
 col_index = find(col_res_values == min(abs(col_res_values)));
 x(col_index) = col_x_values(col_index);
 resid = abs(norm((A*x)-b,2));
-s=nnz(sparse(x));
+s = s+1;
 end
 y = x;
 
-
-
-
-
-
-
-
-
-
-
+end
 
 
 
